@@ -4,3 +4,5 @@
 *.class
 *Test.java
 **/test/
+# 排除本地开发配置，里面放真实密钥
+**/application-dev.yml
