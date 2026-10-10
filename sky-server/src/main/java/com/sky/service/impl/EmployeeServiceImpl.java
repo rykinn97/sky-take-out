@@ -17,6 +17,7 @@ import com.sky.exception.PasswordErrorException;
 import com.sky.mapper.EmployeeMapper;
 import com.sky.result.PageResult;
 import com.sky.service.EmployeeService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,7 @@ import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Slf4j
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
@@ -121,6 +123,50 @@ public class EmployeeServiceImpl implements EmployeeService {
         List<Employee> records = page.getResult();
 
         return new PageResult(total, records);
+    }
+
+    /**
+     * 员工状态转换
+     *  1：启用
+     *  0：禁用
+     * @param status
+     * @param id
+     */
+    @Override
+    public void EmployyStatus(Integer status, Long id) {
+        // 普通方式，只能修改状态
+//        employeeMapper.updateStatus(status, id);
+        // 高级方式，传入个对象，方便以后可以修改别的值，不需要再创建其它sql了
+        Employee employee = Employee.builder()
+                .status(status)
+                .id(id)
+                .build();
+        employeeMapper.update(employee);
+    }
+
+    /**
+     * 员工编辑
+     * @param employeeDTO
+     */
+    @Override
+    public void editEmployee(EmployeeDTO employeeDTO) {
+        Employee employee = new Employee();
+        BeanUtils.copyProperties(employeeDTO, employee);
+        employee.setUpdateTime(LocalDateTime.now());
+        employee.setUpdateUser(BaseContext.getCurrentId());
+        employeeMapper.update(employee);
+    }
+
+    /**
+     * 根据id查员工
+     * @param id
+     * @return
+     */
+    @Override
+    public Employee employeeGetById(Long id) {
+        Employee employee = employeeMapper.employeeGetById(id);
+        employee.setPassword("****");
+        return employee;
     }
 
 }

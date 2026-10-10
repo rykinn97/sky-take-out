@@ -6,6 +6,7 @@ import com.sky.entity.Employee;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 @Mapper
 public interface EmployeeMapper {
@@ -33,4 +34,21 @@ public interface EmployeeMapper {
      */
     // 动态sql使用映射文件
     Page<Employee> pageQuery(EmployeePageQueryDTO employeePageQueryDTO);
+
+    /**
+     * 根据id查询员工
+     * @param id
+     * @return
+     */
+    @Select("select * from employee where id = #{id}")
+    Employee employeeGetById(Long id);
+
+    /**
+     * 根据主键动态修改属性
+     * @param employee
+     */
+//    @Update("update employee set status = #{status} where id = #{id}")
+    void update(Employee employee);
+
+
 }

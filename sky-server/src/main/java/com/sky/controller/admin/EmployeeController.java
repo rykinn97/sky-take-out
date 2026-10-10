@@ -108,4 +108,51 @@ public class EmployeeController {
         return Result.success(pageResult);
     }
 
+    /**
+     * 员工状态转换：
+     *  1：启用
+     *  0：禁用
+     * @param status
+     * @param id
+     * @return
+     */
+    @PostMapping("/status/{status}")
+    @ApiOperation("员工状态转换")
+    public Result status(@PathVariable Integer status, Long id) {
+
+        employeeService.EmployyStatus(status, id);
+
+        return Result.success();
+    }
+
+    /**
+     * 根据id查询员工
+     * @param id
+     * @return
+     */
+    @GetMapping("/{id}")
+    @ApiOperation("根据id查询员工")
+    public Result<Employee> getById(@PathVariable Long id) {
+
+        Employee employee = employeeService.employeeGetById(id);
+
+        return Result.success(employee);
+    }
+
+    /**
+     * 员工编辑
+     * @param employeeDTO
+     * @return
+     */
+    @PutMapping
+    @ApiOperation("员工编辑")
+    public Result edit(@RequestBody EmployeeDTO employeeDTO) {
+
+        log.info("编辑请求：{}", employeeDTO);
+
+        employeeService.editEmployee(employeeDTO);
+
+
+        return Result.success();
+    }
 }
