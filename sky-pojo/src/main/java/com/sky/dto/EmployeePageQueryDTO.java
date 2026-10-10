@@ -1,10 +1,12 @@
 package com.sky.dto;
 
+import io.swagger.annotations.ApiModel;
 import lombok.Data;
 
 import java.io.Serializable;
 
 @Data
+@ApiModel(description = "员工分页查询时传递的数据模型")
 public class EmployeePageQueryDTO implements Serializable {
 
     //员工姓名
