@@ -53,4 +53,12 @@ public interface DishMapper {
      */
     @Update("update dish set status = #{status} where id = #{id}")
     void status(Integer status, Long id);
+
+    /**
+     * 根据id查询菜品
+     * @param id
+     * @return
+     */
+    @Select("select * from dish where id = #{id}")
+    Dish getDish(Long id);
 }

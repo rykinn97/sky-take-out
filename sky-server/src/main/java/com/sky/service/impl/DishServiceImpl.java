@@ -109,4 +109,18 @@ public class DishServiceImpl implements DishService {
     public void status(Integer status, Long id) {
         dishMapper.status(status, id);
     }
+
+    /**
+     * 根据id查询菜品
+     * @param id
+     * @return
+     */
+    @Override
+    public DishVO getById(Long id) {
+        Dish dish = dishMapper.getDish(id);
+        DishVO dishVO = new DishVO();
+        BeanUtils.copyProperties(dish, dishVO);
+        dishVO.setFlavors(dishFlavorMapper.getById(id));
+        return dishVO;
+    }
 }
