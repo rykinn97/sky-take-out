@@ -30,26 +30,6 @@ public class DishServiceImpl implements DishService {
     @Autowired
     private DishFlavorMapper dishFlavorMapper;
 
-//    /**
-//     * 菜品分页查询
-//     * @param dishPageQueryDTO
-//     * @return
-//     */
-//    @Override
-//    public PageResult pageQuery(DishPageQueryDTO dishPageQueryDTO) {
-//
-//        PageHelper.startPage(dishPageQueryDTO.getPage(), dishPageQueryDTO.getPageSize());
-//
-//        Page<Dish> page = dishMapper.pageQuery(dishPageQueryDTO);
-//
-//        long total = page.getTotal();
-//        List<Dish> records = page.getResult();
-//
-//
-//
-//        return new PageResult(total, records);
-//    }
-
     /**
      * 新增菜品和对应的口味
      *  此处涉及两个表的操作，要考虑到数据一致性，两个表要同时操作成功才行，如果不成功要及时回滚

@@ -22,14 +22,6 @@ public interface DishMapper {
     List<Dish> getByCategoryId(Long categoryId);
 
     /**
-     * 菜品分页查询
-     */
-//    Page<Dish> pageQuery(DishPageQueryDTO dishPageQueryDTO);
-//
-//    @Select("select name from category where id = #{categoryId}")
-//    String getCategoryName(Long categoryId);
-
-    /**
      * 新增菜品
      */
     @AutoFill(value = OperationType.INSERT)

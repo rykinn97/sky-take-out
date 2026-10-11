@@ -24,20 +24,6 @@ public class DishController {
     @Autowired
     private DishService dishService;
 
-//    /**
-//     * 菜品分页查询 TODO
-//     * @param dishPageQueryDTO
-//     * @return
-//     */
-//    @GetMapping("/page")
-//    @ApiOperation("菜品分页查询")
-//    public Result<PageResult> pageQuery(DishPageQueryDTO dishPageQueryDTO) {
-//
-//        PageResult pageResult = dishService.pageQuery(dishPageQueryDTO);
-//
-//        return Result.success(pageResult);
-//    }
-
     /**
      * 新增菜品
      * @param dishDTO
