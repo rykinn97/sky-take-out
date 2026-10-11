@@ -29,4 +29,11 @@ public interface DishService {
      * @return
      */
     void delete(List<Long> ids);
+
+    /**
+     * 修改菜品状态
+     * @param status
+     * @return
+     */
+    void status(Integer status, Long id);
 }

@@ -10,6 +10,7 @@ import com.sky.vo.DishVO;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -46,4 +47,10 @@ public interface DishMapper {
      * @param ids
      */
     void delete(List<Long> ids);
+
+    /**
+     * 修改菜品状态
+     */
+    @Update("update dish set status = #{status} where id = #{id}")
+    void status(Integer status, Long id);
 }

@@ -99,4 +99,14 @@ public class DishServiceImpl implements DishService {
         dishMapper.delete(ids);
         dishFlavorMapper.delete(ids);
     }
+
+    /**
+     * 修改菜品状态
+     * @param status
+     * @return
+     */
+    @Override
+    public void status(Integer status, Long id) {
+        dishMapper.status(status, id);
+    }
 }
