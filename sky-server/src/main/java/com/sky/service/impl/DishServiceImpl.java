@@ -123,4 +123,29 @@ public class DishServiceImpl implements DishService {
         dishVO.setFlavors(dishFlavorMapper.getById(id));
         return dishVO;
     }
+
+    /**
+     * 修改菜品
+     * @param dishDTO
+     * @return
+     */
+    @Override
+    public void update(DishDTO dishDTO) {
+        Dish dish = new Dish();
+        BeanUtils.copyProperties(dishDTO, dish);
+        dishMapper.update(dish);
+
+        List<DishFlavor> flavors = dishDTO.getFlavors();
+        List<Long> ids = new ArrayList<>();
+        for (DishFlavor flavor : flavors) {
+            ids.add(flavor.getDishId());
+        }
+        if (!flavors.isEmpty()) {
+            dishFlavorMapper.delete(ids);
+            flavors.forEach(dishFlavor -> {
+                dishFlavor.setDishId(dishDTO.getId());
+            });
+            dishFlavorMapper.insertBatch(flavors);
+        }
+    }
 }
