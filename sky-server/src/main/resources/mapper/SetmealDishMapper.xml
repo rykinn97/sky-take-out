@@ -3,6 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.sky.mapper.SetmealDishMapper">
 
+
     <!--    根据id批量查询菜品套餐关系-->
     <select id="queryDishAndSetmeal" resultType="com.sky.entity.SetmealDish">
         select s.* from setmeal_dish s join dish on dish.id = s.dish_id
@@ -11,5 +12,7 @@
             #{dishId}
         </foreach>
     </select>
+
+
 
 </mapper>

@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.sky.mapper.SetmealMapper">
 
-<!--    套餐分页查询-->
+    <!--    套餐分页查询-->
     <select id="pageQuery" resultType="com.sky.vo.SetmealVO">
         select s.*, c.name categoryName from setmeal s left outer join category c on s.category_id = c.id
         <where>
@@ -11,13 +11,15 @@
                 and s.name like concat('%', #{name}, '%')
             </if>
             <if test="categoryId != null">
-                and category_id = #{categoryId}
+                and s.category_id = #{categoryId}
             </if>
             <if test="status != null">
-                and c.status = #{status}
+                and s.status = #{status}
             </if>
         </where>
         order by s.create_time
     </select>
+
+
 
 </mapper>
